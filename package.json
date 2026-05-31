@@ -1,0 +1,20 @@
+{
+  "name": "perf-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@faker-js/faker": "^10.4.0",
+    "express": "^5.2.1",
+    "faker": "^5.5.3",
+    "sqlite3": "^6.0.1"
+  }
+}

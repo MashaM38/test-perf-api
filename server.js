@@ -1,20 +1,31 @@
 const express = require("express");
 const sqlite3 = require("sqlite3").verbose();
 
+const userRoutes = require('./resources/users');
+const productRoutes = require('./resources/products');
+const orderRoutes = require('./resources/orders');
+const analyticsRoutes = require('./resources/analytics');
+
 const app = express();
 
 app.use(express.json());
+
+app.use('/api/users', userRoutes);
+app.use('/api/products', productRoutes);
+app.use('/api/orders', orderRoutes);
+app.use('/api/analytics', analyticsRoutes);
+
 
 app.get("/", (req, res) => {
     res.send("API works");
 });
 
-const db = new sqlite3.Database("./database.db");
+const db = new sqlite3.Database("./database_test.db");
 
-app.get("/users", (req, res) => {
+app.get("/api/order_items", (req, res) => {
 
     db.all(
-        "SELECT * FROM users",
+        "SELECT * FROM order_items",
         [],
         (err, rows) => {
 
@@ -28,40 +39,10 @@ app.get("/users", (req, res) => {
 
 });
 
-app.get("/orders", (req, res) => {
 
-    db.all(
-        "SELECT * FROM orders",
-        [],
-        (err, rows) => {
 
-            if (err) {
-                return res.status(500).json(err);
-            }
-
-            res.json(rows);
-        }
-    );
-
+app.listen(8080, () => {
+    console.log("Server running on port 8080");
 });
 
-app.get("/products", (req, res) => {
-
-    db.all(
-        "SELECT * FROM products",
-        [],
-        (err, rows) => {
-
-            if (err) {
-                return res.status(500).json(err);
-            }
-
-            res.json(rows);
-        }
-    );
-
-});
-
-app.listen(5000, () => {
-    console.log("Server running on port 5000");
-});
+module.exports = app;

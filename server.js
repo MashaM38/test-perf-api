@@ -1,10 +1,10 @@
 const express = require("express");
 const sqlite3 = require("sqlite3").verbose();
 
-const userRoutes = require('./resources/users');
-const productRoutes = require('./resources/products');
-const orderRoutes = require('./resources/orders');
-const analyticsRoutes = require('./resources/analytics');
+const userRoutes = require('./routes/users');
+const productRoutes = require('./routes/products');
+const orderRoutes = require('./routes/orders');
+const analyticsRoutes = require('./routes/analytics');
 
 const app = express();
 

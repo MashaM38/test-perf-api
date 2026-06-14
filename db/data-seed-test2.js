@@ -474,7 +474,7 @@ function create_indexes() {
 }
 
 //Generate_data;
-//generate_test_data();
+generate_test_data();
 
 //Delete all data
 //delete_all_tables();

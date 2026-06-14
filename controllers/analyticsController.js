@@ -1,4 +1,3 @@
-const db = require('../db/data-seed-test2');
 const { getAll } = require('./detailsHelper');
 
 

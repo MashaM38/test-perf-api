@@ -1,4 +1,7 @@
-const db = require('../db/data-seed-test2');
+//const db = require('../db/data-seed-test2');
+
+const sqlite3 = require("sqlite3").verbose();
+const db = new sqlite3.Database("./database_test.db");
 
 function getProductById(req, res) {
     const id = req.params.id;

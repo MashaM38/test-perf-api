@@ -20,6 +20,8 @@ app.get("/", (req, res) => {
     res.send("API works");
 });
 
+
+//TODO: remove
 const db = new sqlite3.Database("./database_test.db");
 
 app.get("/api/order_items", (req, res) => {
@@ -38,6 +40,7 @@ app.get("/api/order_items", (req, res) => {
     );
 
 });
+/// End of to-do Remove
 
 
 

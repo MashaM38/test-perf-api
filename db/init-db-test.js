@@ -1,8 +1,10 @@
-const sqlite3 = require("sqlite3").verbose();
+// const sqlite3 = require("sqlite3").verbose();
 
-const db = new sqlite3.Database("./database_test.db");
+// const db = new sqlite3.Database("./database_test.db");
 
-module.exports = db;
+// module.exports = db;
+
+const db = require('../db/db-connection');
 
 db.serialize(() => {
 

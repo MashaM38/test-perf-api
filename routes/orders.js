@@ -2,19 +2,16 @@ const express = require ('express');
 
 const router = express.Router();
 
-const { getOrderById, getOrderById_test } = require('../controllers/ordersController');
-const { getAllOrders } = require('../controllers/ordersController');
-const { getOrderDetails } = require('../controllers/orderDetailsController');
 const ordersController = require('../controllers/ordersController');
+const orderDetailsController = require('../controllers/orderDetailsController');
 
-//router.get('/:id', getOrderById);
-router.get('/:id', getOrderById_test);
-router.get('/', getAllOrders);
-router.get('/:id/details', getOrderDetails);
+router.get('/:id', ordersController.getOrderById);
+router.get('/', ordersController.getOrders);
+router.get('/:id/details', orderDetailsController.getOrderDetails);
 
 router.post('/', ordersController.createOrder);
 
-router.put('/:id', ordersController.updateOrder_test);
+router.put('/:id', ordersController.updateOrder);
 
 router.delete('/:id', ordersController.deleteOrder);
 

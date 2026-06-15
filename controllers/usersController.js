@@ -1,58 +1,35 @@
-//const db = require('../db/data-seed-test2');
+const userService = require('../services/userService');
 
-const sqlite3 = require("sqlite3").verbose();
-const db = new sqlite3.Database("./database_test.db");
-
-function getUserById(req, res) {
+async function getUserById(req, res) {
     const id = req.params.id;
 
-    db.get(
-        `
-        SELECT *
-        FROM users
-        WHERE id = ?
-        `,
-        [id],
-        (err, row) => {
-            if (err) {
-                return res.status(500).json({
-                    error: err.message
-                });
-            }
+    try {
+        const user = userService.getUserById(id);
+        if (!user) {
 
-            if (!row) {
-                return res.status(404).json({
-                    error: 'User not found'
-                });
-            }
+            return res.status(404).json({
+                error: 'User not found'
+            });
 
-            res.json(row);
         }
-    );
+        res.json(user);
+    
+        } catch(err) {
+            res.status(500).json({
+                error: err.message
+            });
+        }
 }
 
-
-function getAllUsers(req, res) {
-    console.log(db);
-    console.log(typeof db.all);
-    console.log(typeof db.get);
-
-    db.all(
-        `
-        SELECT *
-        FROM users
-        `,
-        [],
-        (err, rows) => {
-            if (err) {
-                return res.status(500).json({
-                    error: err.message
-                });
-            }
-
-            res.json(rows);
-        }
-    );
+async function getAllUsers(req, res) {
+    try {
+        const users = userService.getAllUsers();
+        res.json(users);
+    } catch(err) {
+        res.status(500).json({
+            error: err.message
+        })
+    }    
 }
 
 module.exports = {

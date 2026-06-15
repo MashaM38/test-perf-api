@@ -2,7 +2,8 @@ const sqlite3 = require("sqlite3").verbose();
 const { faker } = require("@faker-js/faker");
 const Faker = require("faker/lib");
 
-const db = new sqlite3.Database("./database_test.db");
+//const db = new sqlite3.Database("./database_test.db");
+const db = require('../db/db-connection');
 
 
 
@@ -473,6 +474,25 @@ function create_indexes() {
         
 }
 
+async function deleteRowsStartingWithId(startOrderId) {
+    const transaction = db.transaction(() => {
+    db.prepare(`
+        DELETE FROM order_items
+        WHERE order_id IN (
+        SELECT id FROM orders WHERE id >= ?
+        )
+    `).run(startOrderId);
+
+    db.prepare(`
+        DELETE FROM orders
+        WHERE id >= ?
+    `).run(startOrderId);
+    });
+
+    transaction();
+}
+
+
 //Generate_data;
 generate_test_data();
 
@@ -481,5 +501,8 @@ generate_test_data();
 
 //Create indexes
 //create_indexes();
+
+//Delete some orders and order items
+//deleteRowsStartingWithId(36);
 
 module.exports = db;

@@ -2,8 +2,8 @@ const express = require ('express');
 
 const router = express.Router();
 
-const { getAnalyticsPopularProducts } = require('../controllers/analyticsController');
+const analyticsController = require('../controllers/analyticsController');
 
-router.get('/popular-products', getAnalyticsPopularProducts);
+router.get('/popular-products', analyticsController.getAnalyticsPopularProducts);
 
 module.exports = router;

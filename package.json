@@ -15,7 +15,6 @@
     "@faker-js/faker": "^10.4.0",
     "better-sqlite3": "^12.10.1",
     "express": "^5.2.1",
-    "faker": "^5.5.3",
-    "sqlite3": "^6.0.1"
+    "faker": "^5.5.3"
   }
 }

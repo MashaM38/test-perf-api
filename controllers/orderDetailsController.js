@@ -1,8 +1,3 @@
-// const db = require('../db/db-connection');
-
-// const { get, getAll, runQuery } = require('./detailsHelper');
-// const { faker } = require("@faker-js/faker");
-
 const orderService = require('../services/orderService');
 
 async function getOrderDetails(req, res) {
